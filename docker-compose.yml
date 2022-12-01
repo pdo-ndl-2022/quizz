@@ -1,0 +1,32 @@
+version: "3.1"
+
+name: pdo
+
+x-postgres: &postgres-image postgres:14.5
+
+services:
+  postgres:
+    container_name: pdo-postgres
+    image: *postgres-image
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=quiz
+    networks:
+      - pdo-network
+    ports:
+      - "5434:5432"
+    expose:
+      - "5434"
+    volumes:
+      - pdo-postgres-data:/var/lib/postgresql/data
+    restart: always
+
+networks:
+  pdo-network:
+    name: pdo-net
+    driver: bridge
+
+volumes:
+  pdo-postgres-data:
+    name: pdo-postgres-data
