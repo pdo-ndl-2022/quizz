@@ -9,3 +9,8 @@ database:
     password: postgres
     database: quiz
     debug: true
+
+
+auth0:
+  issuer: https://dev-cmegn43bvk67a63b.eu.auth0.com
+  audience: http://quizz.ndl.thomasgouveia.fr
