@@ -5,10 +5,12 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UseGuards
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateQuestionDto } from "../../application/dto/create-question.dto";
+import { QuestionParams } from "../adapters/params/question.param";
 import { QuestionService } from "../services/question.service";
 
 @Controller("questions")
@@ -17,8 +19,8 @@ export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Get()
-  find() {
-    return this.questionService.findAll();
+  find(@Query() query: QuestionParams) {
+    return this.questionService.findAll(query);
   }
 
   @Get(":id")

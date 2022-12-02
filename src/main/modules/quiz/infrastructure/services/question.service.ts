@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { CreateQuestionDto } from "../../application/dto/create-question.dto";
 import { Question } from "../../domain/entities/question.entity";
+import { QuestionParams } from "../adapters/params/question.param";
 import { PsqlQuestionRepository } from "../adapters/repositories/psql-question.repository";
 
 @Injectable()
@@ -13,8 +14,8 @@ export class QuestionService {
     return question;
   }
 
-  async findAll(): Promise<Question[]> {
-    return await this.questionRepository.findAll();
+  async findAll(params: QuestionParams): Promise<Question[]> {
+    return await this.questionRepository.findAll(params);
   }
 
   async create(createQuestionDto: CreateQuestionDto): Promise<Question> {

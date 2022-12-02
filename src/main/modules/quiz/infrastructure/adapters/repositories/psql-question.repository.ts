@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Question } from "../../../domain/entities/question.entity";
 import { QuestionMapper } from "../mappers/question.mapper";
+import { QuestionParams } from "../params/question.param";
 import { QuestionEntity } from "./entities/question.entity";
 
 @Injectable()
@@ -21,9 +22,11 @@ export class PsqlQuestionRepository {
     if (question) return this.questionMapper.entityToApi(question);
   }
 
-  async findAll(): Promise<Question[]> {
+  async findAll(params: QuestionParams): Promise<Question[]> {
     this.logger.log(`Retrieving questions`);
-    const questions = await this.questionRepository.find();
+    const questions = await this.questionRepository.find({
+      ...(params && { where: params })
+    });
     return this.questionMapper.entitiesToApis(questions);
   }
 
