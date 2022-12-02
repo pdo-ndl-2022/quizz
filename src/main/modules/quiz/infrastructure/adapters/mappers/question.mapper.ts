@@ -10,6 +10,7 @@ export class QuestionMapper extends AbstractMapper<QuestionEntity, Question> {
     const entity: QuestionEntity = {
       id: apiModel.id,
       label: apiModel.label,
+      category: apiModel.category,
       options: JSON.stringify(apiModel.options),
       answers: JSON.stringify(apiModel.answers),
       docs: apiModel.docs.join(","),
@@ -24,6 +25,7 @@ export class QuestionMapper extends AbstractMapper<QuestionEntity, Question> {
     const questionProps: QuestionProps = {
       id: entity.id,
       label: entity.label,
+      category: entity.category,
       options: JSON.parse(entity.options),
       answers: JSON.parse(entity.answers),
       docs: entity.docs.split(","),

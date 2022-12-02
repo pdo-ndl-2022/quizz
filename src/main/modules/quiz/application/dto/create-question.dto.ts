@@ -13,6 +13,10 @@ export class CreateQuestionDto {
   @IsNotEmpty()
   label: string;
 
+  @IsString()
+  @IsNotEmpty()
+  category: string;
+
   @IsNotEmpty()
   @IsArray()
   @ValidateNested({ each: true })

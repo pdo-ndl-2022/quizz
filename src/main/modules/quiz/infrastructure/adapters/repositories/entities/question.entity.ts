@@ -1,4 +1,3 @@
-import { Transform } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("question")
@@ -10,15 +9,15 @@ export class QuestionEntity {
   label: string;
 
   @Column()
-  // @Transform((param) => JSON.stringify(param.value))
+  category: string;
+
+  @Column()
   options: string;
 
   @Column()
-  // @Transform((param) => JSON.stringify(param.value))
   answers: string;
 
   @Column()
-  // @Transform((param) => param.value.join(","))
   docs: string;
 
   @Column()

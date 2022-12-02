@@ -14,11 +14,7 @@ async function bootstrap() {
   await app.startAllMicroservices();
 
   app.enableCors();
-  app.useGlobalPipes(
-    new ValidationPipe({
-      disableErrorMessages: true
-    })
-  );
+  app.useGlobalPipes(new ValidationPipe());
   app.enableShutdownHooks();
 
   const port = config["server"]["port"] || 3000;

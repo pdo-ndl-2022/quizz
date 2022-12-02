@@ -6,6 +6,7 @@ export type Option = {
 export type QuestionProps = {
   id?: string;
   label: string;
+  category: string;
   options: Option[];
   answers: number[];
   docs: string[];
@@ -18,6 +19,7 @@ export class Question {
     public readonly id: string,
     /** The question */
     public label: string,
+    public category: string,
     /** Possible answers */
     public options: Option[],
     /** The correct answers ids */
@@ -32,6 +34,7 @@ export class Question {
     const question = new Question(
       props.id,
       props.label,
+      props.category,
       props.options,
       props.answers,
       props.docs,
